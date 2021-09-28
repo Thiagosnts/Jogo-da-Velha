@@ -1,0 +1,47 @@
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  margin: 20px;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #ccc;
+
+  padding: 10px;
+  font-size: 76px;
+  text-align: center;
+}
+
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-left: 2px solid #eee;
+}
+
+.line:nth-child(2) {
+  border-top: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+}
