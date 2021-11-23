@@ -1,4 +1,4 @@
-# Tic Tac Toe Socket
+# Jogo da velha Socket
 Jogo da velha usando websocket, HTML e JS.
 
 ## Bibliotecas

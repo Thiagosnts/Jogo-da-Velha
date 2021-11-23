@@ -45,10 +45,10 @@ const readyGame = function () {
 const winner = function () {
   if (playerWinner && player === playerWinner) {
     showDisconnectOpponent = false;
-    backHome(`Parabéns ${params.nickname}, você ganhou =)`);
+    backHome(`Parabéns ${params.nome}, você ganhou =)`);
   } else if (playerWinner && player !== playerWinner) {
     showDisconnectOpponent = false;
-    backHome(`Que pena ${params.nickname}, você perdeu =(`);
+    backHome(`Que pena ${params.nome}, você perdeu =(`);
   } else if (draw) {
     showDisconnectOpponent = false;
     backHome(`Empate =|`);
@@ -86,7 +86,7 @@ document.getElementById("btn-home").addEventListener("click", function (event) {
 socketClient.on("connect", function () {
   socketClient.emit(
     "playGame",
-    { nickname: params.nickname, idGame: idGame },
+    { nome: params.nome, idGame: idGame },
     function (err) {
       if (err.status) {
         alert(err.message);
@@ -122,7 +122,7 @@ socketClient.on("updateGame", function (data) {
   idGame = data.idGame;
   playerTurn = data.playerTurn;
   playerWinner = data.playerWinner;
-  if (data.playerX === params.nickname) {
+  if (data.playerX === params.nome) {
     player = "X";
   } else {
     player = "O";

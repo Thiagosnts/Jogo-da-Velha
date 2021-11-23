@@ -30,3 +30,21 @@ body {
 .form-field {
   margin: 20px 0;
 }
+
+
+.centered-form {
+  box-shadow: 0px 1px 6px rgb(0 0 0);
+}
+
+html,body{
+  background: #612f74;
+}
+
+
+#play-game{
+  background-color: #612f74;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+}

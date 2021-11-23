@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const socketIO = require("socket.io");
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8000;
 const app = express();
 const serverHTTP = http.createServer(app);
 const serverSocket = socketIO(serverHTTP);
@@ -44,26 +44,26 @@ serverSocket.on("connection", (socketConn) => {
     if (params.idGame) {
       const game = games.find((elem) => elem.id === params.idGame);
       if (game) {
-        if (game.playerX === params.nickname) {
+        if (game.playerX === params.nome) {
           callback({
             status: false,
             message: "Jogador já registrado na partida!",
           });
           game.users.forEach((elem) => {
-            if (elem.nickname === params.nickname) {
-              elem[params.nickname] = socketConn.id;
+            if (elem.nome === params.nome) {
+              elem[params.nome] = socketConn.id;
             }
           });
           // updatePlayer("X", game, socketConn.id);
           // updateGame(game);
-        } else if (game.playerO === params.nickname) {
+        } else if (game.playerO === params.nome) {
           callback({
             status: false,
             message: "Jogador já registrado na partida!",
           });
           game.users.forEach((elem) => {
-            if (elem.nickname === params.nickname) {
-              elem[params.nickname] = socketConn.id;
+            if (elem.nome === params.nome) {
+              elem[params.nome] = socketConn.id;
             }
           });
           // updatePlayer("O", game, socketConn.id);
@@ -73,8 +73,8 @@ serverSocket.on("connection", (socketConn) => {
     } else {
       const game = games.find((elem) => elem.open);
       if (game) {
-        const player = game.addNewPlayer(params.nickname);
-        game.users.push({ nickname: params.nickname, id: socketConn.id });
+        const player = game.addNewPlayer(params.nome);
+        game.users.push({ nome: params.nome, id: socketConn.id });
         callback({
           status: false,
           message: "Jogador já registrado na partida!",
