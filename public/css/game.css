@@ -4,17 +4,20 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
 }
 
 .wrapper {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .board {
-  margin: 20px;
-  width: 900px;
+  margin: auto;
+  /* width: 900px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,9 +32,9 @@ body {
 .cell {
   width: 100px;
   height: 100px;
-  background: #ccc;
+  /* background: #ccc; */
 
-  padding: 10px;
+  /* padding: 10px; */
   font-size: 76px;
   text-align: center;
 }
@@ -44,4 +47,39 @@ body {
 .line:nth-child(2) {
   border-top: 2px solid #eee;
   border-bottom: 2px solid #eee;
+}
+
+
+.centered-form {
+  box-shadow: 0px 1px 6px rgb(0 0 0);
+}
+
+html,body{
+  background: #612f74;
+}
+
+
+#play-game{
+  background-color: #612f74;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.btn {
+  display: block;
+  margin:auto
+}
+
+
+@keyframes go-back {
+  to {
+    transform: scaleX(-1);
+  }
+}
+.anim{
+  animation: go-back 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate
 }
