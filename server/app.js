@@ -1,13 +1,29 @@
+const fs = require('fs');
 const path = require("path");
 const http = require("http");
+const https = require('https');
 const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const socketIO = require("socket.io");
 
-const port = process.env.PORT || 8000;
+const privateKey = fs.readFileSync('./certificado/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('./certificado/cert.pem', 'utf8');
+const ca = fs.readFileSync('./certificado/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+
+const port = process.env.PORT || 80;
 const app = express();
-const serverHTTP = http.createServer(app);
-const serverSocket = socketIO(serverHTTP);
+//const serverHTTP = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+//const serverSocket = socketIO(serverHTTP);
+const serverSocket = socketIO(httpsServer);
+
 
 const { Game } = require("./utils/Game");
 const games = [new Game(uuidv4()), new Game(uuidv4())];
@@ -112,6 +128,11 @@ serverSocket.on("connection", (socketConn) => {
   });
 });
 
-serverHTTP.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
+// serverHTTP.listen(port, () => {
+//   console.log(`Server is up on port ${port}`);
+// });
+
+
+httpsServer.listen(443, () => {
+	console.log('HTTPS Server running on port 443');
 });
