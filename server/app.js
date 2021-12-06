@@ -28,6 +28,16 @@ const serverSocket = socketIO(httpsServer);
 const { Game } = require("./utils/Game");
 const games = [new Game(uuidv4()), new Game(uuidv4())];
 
+
+app.use(function(req, res, next) {
+  if (req.secure) {
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains') // 2 years
+  }
+  next()
+})
+
+
+
 app.use(express.static(path.join(__dirname, "/../public")));
 
 const updatePlayer = (player, game, socketId) => {
