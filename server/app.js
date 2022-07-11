@@ -18,8 +18,8 @@ const credentials = {
 
 const port = process.env.PORT || 80;
 const app = express();
-//const serverHTTP = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
+const serverHTTP = http.createServer(app);
+// const httpsServer = https.createServer(credentials, app);
 
 //const serverSocket = socketIO(serverHTTP);
 const serverSocket = socketIO(httpsServer);
@@ -138,11 +138,11 @@ serverSocket.on("connection", (socketConn) => {
   });
 });
 
-// serverHTTP.listen(port, () => {
-//   console.log(`Server is up on port ${port}`);
-// });
-
-
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
+serverHTTP.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
+
+
+// httpsServer.listen(443, () => {
+// 	console.log('HTTPS Server running on port 443');
+// });
