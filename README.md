@@ -10,12 +10,12 @@ Jogo da velha usando websocket, HTML e JS.
 - node server/app.js
 - acesse localhost:3000
 
-## rodando com docker
-- crir imagem docker
-docker build -t jogo .
+## Rodando com docker
+Criar imagem docker
+`docker build -t jogo .`
 
-- rodar imagem docker
-docker run -p 80:80 -d jogo 
+Rodar imagem docker
+`docker run -p 80:80 -d jogo` 
 
 ## para acessar http://localhost
 
