@@ -21,8 +21,8 @@ const app = express();
 const serverHTTP = http.createServer(app);
 // const httpsServer = https.createServer(credentials, app);
 
-//const serverSocket = socketIO(serverHTTP);
-const serverSocket = socketIO(httpsServer);
+const serverSocket = socketIO(serverHTTP);
+// const serverSocket = socketIO(httpsServer);
 
 
 const { Game } = require("./utils/Game");
